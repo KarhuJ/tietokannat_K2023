@@ -1,0 +1,12 @@
+a) mysql> SELECT DISTINCT owner FROM pet;
+
+b) mysql> SELECT name FROM pet ORDER BY name;
+
+c) mysql> select * FROM pet where death is null;
+
+d) mysql> select owner FROM pet where owner like 'H%';
+
+e) mysql> SELECT * FROM pet WHERE name LIKE '%ff%';
+
+f) mysql> SELECT * FROM pet WHERE name like '____'; tai mysql> SELECT * FROM pet WHERE name>='4';  /*(kaikissa nimissähän on 4 kirjainta,
+jos halutaan vain tasan 4 kirjainta tyyli 1 ja kaikki joissa on vähintään 4 tyyli 2.)*/
