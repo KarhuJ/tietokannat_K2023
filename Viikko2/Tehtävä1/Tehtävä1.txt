@@ -1,0 +1,13 @@
+a) mysql> DELETE FROM pet where name='Puffball';
+
+b) mysql> UPDATE pet SET birth = '1989-08-31' WHERE name = 'Bowser';
+
+c) mysql> UPDATE pet SET death = '2000-09-15' WHERE name = 'Chirpy';
+
+d) mysql> SELECT * FROM pet WHERE birth >= '1990-01-01';
+
+e) mysql> SELECT * FROM pet WHERE sex = 'm';
+
+f) mysql> SELECT * FROM pet WHERE (sex = 'm' AND species = 'dog');
+
+g) mysql> SELECT name, owner FROM pet Where(species = 'dog' AND sex = 'm');
