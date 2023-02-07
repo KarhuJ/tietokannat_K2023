@@ -1,0 +1,46 @@
+mysql> select * from opintojakso;
++---------------+---------------+--------------+---------+
+| idOpintojakso | Nimi          | Koodi        | Laajuus |
++---------------+---------------+--------------+---------+
+|             1 | Matematiikka  | KGFS123231   |       3 |
+|             2 | Fysiikka      | HS435666     |       4 |
+|             3 | Liikunta      | JHG969045    |       3 |
+|             4 | Ruotsin kieli | HDKH8788965  |       3 |
+|             5 | Japanin kieli | HGHGFD324534 |       5 |
++---------------+---------------+--------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from opiskelija;
++--------------+---------+----------+----------------+--------------+
+| idOpiskelija | Etunimi | Sukunimi | Osoite         | Luokkatunnus |
++--------------+---------+----------+----------------+--------------+
+|            1 | Aku     | Ankka    | Ankkalinna 313 | TVT22SPL     |
+|            2 | Roope   | Ankka    | Ankkalinna 314 | TVT22SPL     |
+|            3 | Iines   | Ankka    | Ankkalinna 315 | TVT22SPL     |
+|            4 | Mikki   | Hiiri    | Ankkalinna 316 | TVT22SPL     |
+|            5 | Hessu   | Hopo     | Ankkalinna 317 | TVT22SPL     |
++--------------+---------+----------+----------------+--------------+
+5 rows in set (0.00 sec)
+
+
+mysql> select etunimi,sukunimi,arvosana,paivamaara,nimi from arviointi join opiskelija on opiskelija.idOpiskelija=arviointi.idOpiskelija join opintojakso on opintojakso.idOpintojakso=arviointi.idOpintojakso;
++---------+----------+----------+------------+---------------+
+| etunimi | sukunimi | arvosana | paivamaara | nimi          |
++---------+----------+----------+------------+---------------+
+| Hessu   | Hopo     |        0 | 2015-06-12 | Liikunta      |
+| Mikki   | Hiiri    |        5 | 2014-09-05 | Fysiikka      |
+| Mikki   | Hiiri    |        5 | 2014-09-08 | Ruotsin kieli |
+| Mikki   | Hiiri    |        0 | 2014-09-08 | Matematiikka  |
+| Aku     | Ankka    |        5 | 2014-04-08 | Matematiikka  |
+| Aku     | Ankka    |        5 | 2014-04-08 | Liikunta      |
+| Aku     | Ankka    |        1 | 2014-06-23 | Ruotsin kieli |
+| Roope   | Ankka    |        3 | 2014-06-26 | Ruotsin kieli |
+| Roope   | Ankka    |        5 | 2014-06-26 | Liikunta      |
+| Roope   | Ankka    |        5 | 2014-06-26 | Fysiikka      |
+| Iines   | Ankka    |        4 | 2014-01-12 | Fysiikka      |
+| Iines   | Ankka    |        5 | 2014-01-12 | Matematiikka  |
+| Iines   | Ankka    |        5 | 2014-01-12 | Japanin kieli |
+| Hessu   | Hopo     |        1 | 2014-03-17 | Japanin kieli |
+| Hessu   | Hopo     |        5 | 2016-08-22 | Fysiikka      |
++---------+----------+----------+------------+---------------+
+15 rows in set (0.00 sec)

@@ -1,0 +1,46 @@
+1)
+mysql> SELECT etunimi, sukunimi, arvosana FROM opiskelija JOIN arviointi ON opiskelija.idOpiskelija = arviointi.idOpiskelija JOIN opintojakso ON opintojakso.idOpintojakso = arviointi.idOpintojakso WHERE arvosana = 0;
++---------+----------+----------+
+| etunimi | sukunimi | arvosana |
++---------+----------+----------+
+| Hessu   | Hopo     |        0 |
+| Mikki   | Hiiri    |        0 |
++---------+----------+----------+
+2 rows in set (0.00 sec)
+
+2)
+mysql> SELECT etunimi, sukunimi, arvosana, nimi from opiskelija join arviointi on opiskelija.idOpiskelija = arviointi.idOpiskelija join opintojakso on arviointi.idOpintojakso = opintojakso.idOpintojakso WHERE nimi = 'Fysiikka' AND arvosana >= 1;
++---------+----------+----------+----------+
+| etunimi | sukunimi | arvosana | nimi     |
++---------+----------+----------+----------+
+| Mikki   | Hiiri    |        5 | Fysiikka |
+| Roope   | Ankka    |        5 | Fysiikka |
+| Iines   | Ankka    |        4 | Fysiikka |
+| Hessu   | Hopo     |        5 | Fysiikka |
++---------+----------+----------+----------+
+4 rows in set (0.00 sec)
+
+3)
+mysql> SELECT nimi FROM opintojakso WHERE idOpintojakso IN (SELECT idOpintojakso FROM Arviointi WHERE idOpiskelija = (SELECT idOpiskelija FROM opiskelija WHERE etunimi = 'Hessu' AND sukunimi = 'Hopo'));
++---------------+
+| nimi          |
++---------------+
+| Fysiikka      |
+| Liikunta      |
+| Japanin kieli |
++---------------+
+3 rows in set (0.05 sec)
+
+4)
+mysql> SELECT AVG(Arvosana) FROM Arviointi WHERE idOpiskelija = (SELECT idOpiskelija FROM Opiskelija WHERE etunimi = 'Aku' AND sukunimi = 'Ankka');
++---------------+
+| AVG(Arvosana) |
++---------------+
+|        3.6667 |
++---------------+
+1 row in set (0.05 sec)
+
+5)
+mysql> SELECT Opintojakso.nimi FROM Opintojakso LEFT JOIN Arviointi ON Opintojakso.idOpintojakso = Arviointi.idOpintojakso WHERE Arviointi.idArviointi IS NULL;
+Empty set (0.00 sec)
+//kaikille opintojaksoille oli osallistuja, koska en tehnyt opintojaksoja niinkuin opettaja
