@@ -1,0 +1,63 @@
+1)kaksi samaa kirjaa
+
+mysql> select idKirja, title, kopio ,teos.idteos from kirja join teos on kirja.idteos=teos.idteos;
++---------+---------------------------------+-------+--------+
+| idKirja | title                           | kopio | idteos |
++---------+---------------------------------+-------+--------+
+|       1 | Tuntematon sotilas              | 1     |      1 |
+|       2 | Tuntematon sotilas              | 2     |      1 |
+|       3 | Tuntematon sotilas              | 3     |      1 |
+|       4 | Harry Potter ja Viisasten kivi  | 1     |      2 |
+|       5 | Harry Potter ja Viisasten kivi  | 2     |      2 |
+|       6 | Harry Potter ja Viisasten kivi  | 3     |      2 |
+|       7 | Taru sormusten herrasta         | 1     |      3 |
+|       8 | Taru sormusten herrasta         | 2     |      3 |
+|       9 | Taru sormusten herrasta         | 3     |      3 |
+|      10 | Harry Potter ja Azkabanin vanki | 1     |      4 |
+|      11 | Harry Potter ja Azkabanin vanki | 2     |      4 |
+|      12 | Harry Potter ja Azkabanin vanki | 3     |      4 |
+|      13 | Hobitti                         | 1     |      5 |
+|      14 | Hobitti                         | 2     |      5 |
+|      15 | Hobitti                         | 3     |      5 |
++---------+---------------------------------+-------+--------+
+15 rows in set (0.00 sec)
+
+2) kirja jossa useampi tekijä
+
+mysql> select * from teos_tekijä;
++--------+-----------+
+| idTeos | idTekijä  |
++--------+-----------+
+|      6 |         4 |
+|      6 |         5 |
++--------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from teos;
++--------+---------------------------------+-----------+
+| idTeos | Title                           | idTekijä  |
++--------+---------------------------------+-----------+
+|      1 | Tuntematon sotilas              |         1 |
+|      2 | Harry Potter ja Viisasten kivi  |         2 |
+|      3 | Taru sormusten herrasta         |         3 |
+|      4 | Harry Potter ja Azkabanin vanki |         2 |
+|      5 | Hobitti                         |         3 |
+|      6 | Elämäni kirja                   |         4 |
++--------+---------------------------------+-----------+
+6 rows in set (0.00 sec)
+
+
+3)lainaustapahtuma vielä lainassa.
+
+mysql> select lainattu, palautettu from lainaus join kirja on lainaus.idlainaus=kirja.idlainaus;
++------------+------------+
+| lainattu   | palautettu |
++------------+------------+
+| 2022-12-01 | NULL       |
+| 2022-11-12 | 2022-12-30 |
+| 2022-10-10 | 2022-11-11 |
+| 2022-10-10 | 2022-11-11 |
+| 2022-10-23 | NULL       |
+| 2022-12-12 | 2022-12-27 |
++------------+------------+
+6 rows in set (0.05 sec)
